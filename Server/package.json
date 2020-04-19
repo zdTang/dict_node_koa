@@ -1,0 +1,22 @@
+{
+  "name": "dict_node",
+  "version": "1.0.0",
+  "description": "a server for English Dictionary",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdTang/dict_node_koa.git"
+  },
+  "keywords": [
+    "Dict"
+  ],
+  "author": "Zhendong Tang (Mike)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zdTang/dict_node_koa/issues"
+  },
+  "homepage": "https://github.com/zdTang/dict_node_koa#readme"
+}
