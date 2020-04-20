@@ -8,7 +8,7 @@ Date      : Jan 30, 2020
 module.exports={
 
        //Database 
-        DB_HOST: 'localhost',
+        DB_HOST: '192.168.1.13',
         //DB_HOST: '10.144.18.14',
         DB_PORT: '3306',
         //DB_USER:  'root',
@@ -19,7 +19,7 @@ module.exports={
         //DB_PASS: 'Conestoga123456@@',
         DB_PASS: '123456',
         //DB_PASS: 'Conestoga-Karmax-20',
-        DB_NAME: 'flos',
+        DB_NAME: 'dict',
       
         //Encryption
         ADMIN_SUFFIX: '_?:L$"OPUIOSIFJ(*UPT:LKRFG',
