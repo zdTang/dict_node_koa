@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/zdTang/dict_node_koa/issues"
   },
-  "homepage": "https://github.com/zdTang/dict_node_koa#readme"
+  "homepage": "https://github.com/zdTang/dict_node_koa#readme",
+  "dependencies": {
+    "@types/node": "^13.13.0",
+    "co-mysql": "^1.0.0"
+  },
+  "devDependencies": {
+    "mysql": "^2.18.1"
+  }
 }

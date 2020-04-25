@@ -47,8 +47,39 @@ module.exports = /** @class */ (function () {
     function dalClass() {
         this.db = require("./database");
     }
-    //
+    //get words from database
     dalClass.prototype.GetWord = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var word;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        word = undefined;
+                        return [4 /*yield*/, this.db.query("Select * from Class")];
+                    case 1:
+                        word = _a.sent();
+                        return [2 /*return*/, word];
+                }
+            });
+        });
+    };
+    //get words from database
+    dalClass.prototype.GetClass = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var word;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        word = undefined;
+                        return [4 /*yield*/, this.db.query("Select * from Class")];
+                    case 1:
+                        word = _a.sent();
+                        return [2 /*return*/, word];
+                }
+            });
+        });
+    };
+    dalClass.prototype.GetFamily = function () {
         return __awaiter(this, void 0, void 0, function () {
             var word;
             return __generator(this, function (_a) {

@@ -8,7 +8,7 @@ Date      : April 20, 2020
 =====================================================================*/
 var mysql = require('mysql');
 var co = require('co-mysql');
-var config = require('../config');
+var config = require('./config');
 var conn = mysql.createPool({
     host: config.DB_HOST,
     user: config.DB_USER,

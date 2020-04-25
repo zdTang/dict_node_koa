@@ -20,13 +20,23 @@ module.exports = class dalClass {
     constructor() {  
         this.db=require(`./database`)
     }
-    //
+    //get words from database
     public async GetWord(){
         let word:any=undefined;
         word = await this.db.query(`Select * from Class`);
         return word;
+    }
+     //get words from database
+     public async GetClass(){
+        let word:any=undefined;
+        word = await this.db.query(`Select * from Class`);
+        return word;
+    }
 
-
+    public async GetFamily(){
+        let word:any=undefined;
+        word = await this.db.query(`Select * from Class`);
+        return word;
     }
 
 };
