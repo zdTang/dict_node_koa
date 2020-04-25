@@ -21,7 +21,7 @@ async function main() {
     // Config
     const config = {
       encoding: 'FLAC',
-      //sampleRateHertz: 16000,
+      //sampleRateHertz: 16000,// this one is not for FLAC
       languageCode: 'en-US',
       model: 'command_and_search'
     };
