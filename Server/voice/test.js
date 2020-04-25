@@ -7,7 +7,7 @@ async function main() {
     const client = new speech.SpeechClient();
   
     // The name of the audio file to transcribe
-    const fileName = './hello.m4a';
+    const fileName = './brooklyn.flac';
   
     // Reads a local audio file and converts it to base64
     const file = fs.readFileSync(fileName);
@@ -17,11 +17,16 @@ async function main() {
     const audio = {
       content: audioBytes,
     };
+
+    // Config
     const config = {
-      encoding: 'LINEAR16',
-      sampleRateHertz: 16000,
+      encoding: 'FLAC',
+      //sampleRateHertz: 16000,
       languageCode: 'en-US',
+      model: 'command_and_search'
     };
+
+    // Request
     const request = {
       audio: audio,
       config: config,
