@@ -1,6 +1,5 @@
 Dict_Node
 Create By Zhendong Tang
-
 # Call speech-to-text api
 
 export GOOGLE_APPLICATION_CREDENTIALS="/home/mike/Documents/api/speechText.json"
@@ -17,4 +16,3 @@ install the lastest Node version with NVM
 npm install --save @google-cloud/text-to-speech
 ## speech-to-text
 npm install --save @google-cloud/speech
-
