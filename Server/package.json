@@ -24,8 +24,6 @@
     "co-mysql": "^1.0.0"
   },
   "devDependencies": {
-    "@google-cloud/speech": "^3.6.0",
-    "@google-cloud/text-to-speech": "^2.3.0",
     "mysql": "^2.18.1"
   }
 }
