@@ -1,0 +1,89 @@
+{
+    "dispatcher" : "Ross Johnson",
+    "date" : "2020-3-01",
+    "routes" :
+    [
+        {
+            "truckName":"truckNameA",
+            "GPSid":"xxx123",
+            "steps":[{
+                "locationName":"karmaxStart",
+                "ArriveS":"6:00AM",
+                "Depart":"6:30AM",
+                "LoadingTime":"0.30",
+                "TransitTime":"5:00",
+                "DeliverLocation":"L&L",
+                "ArriveE":"11:30AM",
+                "Cost":"1000"
+            },
+            {
+                "locationName":"L&L",
+                "ArriveS":"11:30AM",
+                "Depart":"12:30AM",
+                "LoadingTime":"1.00",
+                "TransitTime":"5:00",
+                "DeliverLocation":"karmaxEnd",
+                "ArriveE":"5:30PM",
+                "Cost":"1000"
+            },
+            {
+                "locationName":"karmaxEnd",
+                "ArriveS":"5:30PM",
+                "Depart":"5:45PM",
+                "LoadingTime":"0.15",
+                "TransitTime":"",
+                "DeliverLocation":"",
+                "ArriveE":"",
+                "Cost":"1000"
+            } ]
+
+        },
+
+        {
+            "truckName":"truckNameB",
+            "GPSid":"xxx999",
+            "steps":[{
+                "locationName":"karmaxStart",
+                "ArriveS":"6:00AM",
+                "Depart":"6:30AM",
+                "LoadingTime":"0.30",
+                "TransitTime":"1:15",
+                "DeliverLocation":"Eurospec",
+                "ArriveE":"7:45AM",
+                "Cost":"1000"
+            },
+            {
+                "locationName":"Eurospec",
+                "ArriveS":"7:45AM",
+                "Depart":"8:30AM",
+                "LoadingTime":"0.45",
+                "TransitTime":"0.45",
+                "DeliverLocation":"PennEngineering",
+                "ArriveE":"9:15AM",
+                "Cost":"1000"
+            },
+            {
+                "locationName":"PennEngineering",
+                "ArriveS":"9:15AM",
+                "Depart":"9:45AM",
+                "LoadingTime":"0.30",
+                "TransitTime":"1:00",
+                "DeliverLocation":"KarmaxEnd",
+                "ArriveE":"10:45AM",
+                "Cost":"600"
+            } ,
+            {
+                "locationName":"KarmaxEnd",
+                "ArriveS":"10:45AM",
+                "Depart":"11:00AM",
+                "LoadingTime":"0.15",
+                "TransitTime":"",
+                "DeliverLocation":"",
+                "ArriveE":"",
+                "Cost":"60"
+            }]
+
+        }
+
+    ]
+}

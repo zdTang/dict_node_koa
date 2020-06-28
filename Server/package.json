@@ -1,31 +1,48 @@
 {
-  "name": "dict_node",
+  "name": "flos-server",
   "version": "1.0.0",
-  "description": "a server for English Dictionary",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zdTang/dict_node_koa.git"
-  },
-  "keywords": [
-    "Dict"
-  ],
-  "author": "Zhendong Tang (Mike)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zdTang/dict_node_koa/issues"
-  },
-  "homepage": "https://github.com/zdTang/dict_node_koa#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@types/node": "^13.13.0",
-    "co-mysql": "^1.0.0"
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "mysqldate": "^0.1.6",
+    "sequelize": "^5.21.5"
   },
   "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^13.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "await-fs": "^1.0.0",
+    "co-mysql": "^1.0.0",
+    "crypto": "^1.0.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "koa": "^2.11.0",
+    "koa-better-body": "^3.3.1",
+    "koa-ejs": "^4.3.0",
+    "koa-router": "^8.0.6",
+    "koa-session": "^5.13.1",
+    "koa-static": "^5.0.0",
+    "mysql": "^2.18.1",
+    "noa": "^0.0.3",
+    "nodemon": "^2.0.2",
+    "socket.io": "^2.3.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5",
     "@google-cloud/speech": "^3.6.0",
-    "@google-cloud/text-to-speech": "^2.3.0",
-    "mysql": "^2.18.1"
+    "@google-cloud/text-to-speech": "^2.3.0"
   }
 }

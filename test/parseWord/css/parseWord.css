@@ -1,0 +1,24 @@
+
+div{
+    float: left; 
+    /* display: inline; */
+}
+
+.letter {
+font-size:xx-large;
+width: 100 px;
+height: 100 px;
+ border: 2px solid yellow;
+ color: white; 
+ background-color: darkred;
+padding: 0.8em 0.8em 0.6em;  
+}
+
+/* #dock {
+    width: 100 px;
+    height: 100 px; 
+    border: 2px solid yellow;
+color: white;
+background-color: darkred;
+padding: 0.8em 0.8em 0.6em;   
+} */
