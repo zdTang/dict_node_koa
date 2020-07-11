@@ -1,8 +1,8 @@
 const PATH = require('path');
 module.exports={
-    mode:"development",
+    mode:"production",
     entry:{
-        3:"./dist/3.js"
+        1:"./dist/1.js"
     },
     output:{
         path: PATH.resolve('./bundles/'),

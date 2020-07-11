@@ -86,3 +86,4 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+Client_jQuery/bundles/1.bundle.js
