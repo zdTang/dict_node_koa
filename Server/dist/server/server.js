@@ -15,7 +15,7 @@ const session=require('koa-session');
 const fs=require('fs');
 const ejs=require('koa-ejs'); 
 //const config=require('../config');
-const config=require(path.resolve(__dirname,'../config'));
+const config=require(path.resolve(__dirname,'../../config.js'));
 //const static=require('../routers/static');
 const static=require(path.resolve(__dirname,'../routers/static'));
 

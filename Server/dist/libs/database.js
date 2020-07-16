@@ -7,7 +7,7 @@ Date      : Jan 30, 2020
 =====================================================================*/
 const mysql=require('mysql');
 const co=require('co-mysql');
-const config=require('../config');
+const config=require('../../config');
 
 
 let conn=mysql.createPool({
