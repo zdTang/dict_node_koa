@@ -45,6 +45,17 @@ let router=new Router();
 router.all("/",async ctx=>{
        ctx.body=" <p>API  ROOT</p> ";
 })
+/*===========================
+* Root of `host/api` 
+ ===========================*/
+
+// host/api/
+router.get("/findWord",async ctx=>{
+    console.log(ctx.query);
+    let word=ctx.query.word;
+    let result = await DAL.GetWord(word);
+    ctx.body=result;
+})
 
 
 /*=================================
