@@ -13,13 +13,13 @@ module.exports={
         DB_PORT: '3306',
         //DB_USER:  'root',
         //DB_USER: 'ztang',
-        DB_USER: 'mike',
+        DB_USER: 'root',
         //DB_USER: 'root',
         //DB_PASS: 'mysql',
         //DB_PASS: 'Conestoga123456@@',
-        DB_PASS: '123456',
+        DB_PASS: 'mysql',
         //DB_PASS: 'Conestoga-Karmax-20',
-        DB_NAME: 'flos',
+        DB_NAME: 'dict',
       
         //Encryption
         ADMIN_SUFFIX: '_?:L$"OPUIOSIFJ(*UPT:LKRFG',
