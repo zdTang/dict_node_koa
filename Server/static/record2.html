@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 初始化
+Recorder.initialize({
+swfSrc: "../recorder.swf"
+});
+// 开始录音
+function record(callback){
+    Recorder.record({
+    start: function(){
+    callback && callback();
+    },
+    progress: function(milliseconds){
+    //document.getElementById("time").innerHTML = timecode(milliseconds);
+    }
+    });
+}
+// 上传模块
+var recordArr = []; // 因为最后需要展示音频列表，需要一个全局数组用于存储upyun返回的音频url
+function upload(callback){
+// 定义音频文件名
+var fileName = $.cookie("TOEFL_TOKEN") ? "login" + new Date().getTime() : "nologin" + new Date().getTime();
+// 获取upyun配置参数，参考upyun的form_api：http://docs.upyun.com/api/form_api/
+// 这里先上传音频文件名至服务器端，服务端根据文件名生成对应的policy和signature返回客户端
+$.ajax({
+type: "GET",
+url: xm.baseURL + "/mkTpo/file/" + fileName + ".wav/posts.action",
+dataType : "json",
+success: function(data) {
+// 获取upyun_api参数
+    var expiration = data.expiration, // 时间戳
+    saveKey = data["save-key"], // 保存路径
+    bucket = data.bucket, // 空间名
+    policy = data.poily, // policy
+    signature = data.signature; // signature
+    // 插件封装方法，注：该方法中的注释可能导致程序报错，需删除
+    Recorder.upload({
+    method: "POST",
+    url: "http://v0.api.upyun.com/universe1", // 录音上传url：upyun_api基本域名+空间名
+    audioParam: "file", // 上传upyun时，这个参数值固定为file，相当于表单提交中的<input type="file">
+    params: { // 这里填写获取的upyun_api参数，获取upyun的上传权限
+    "expiration": expiration,
+    "save-key": saveKey,
+    "bucket": bucket,
+    "policy": policy,
+    "signature": signature
+    },
+    success: function(responseText){ // 上传成功之后upyun会返回音频文件的相关信息
+    var data = JSON.parse(responseText);
+    recordArr.push(data.url); // 将录音音频的url追加到数组
+    callback && callback(); // 上传完成执行方法
+    }
+    });
+},
+error: function(XMLHttpRequest, textStatus, errorThrown) {
+console.log("XMLHttpRequest.status: " + XMLHttpRequest.status);
+console.log("XMLHttpRequest.readyState: " + XMLHttpRequest.readyState);
+console.log("textStatus: " + textStatus);
+}
+});
+}
+    </script>
+    
+</body>
+</html>

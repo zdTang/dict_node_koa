@@ -5,6 +5,7 @@ Project: Karmax
 Programmer: Zhendong Tang (Mike)
 Date      : Jan 30, 2020
 =====================================================================*/
+export {};
 const Path=require('path');
 const Router=require('koa-router');
 const fs=require('await-fs');  
@@ -18,6 +19,7 @@ const Validator = require(Path.resolve(__dirname,'../../libs/validator'));
 //const PositionProcessor = require(Path.resolve(__dirname,'../../libs/position'));
 //const PiaProcessor = require(Path.resolve(__dirname,'../../libs/pia'));
 //const Status = require(Path.resolve(__dirname,'../../libs/status'));
+const VoiceToText=require("../../libs/voice_to_text")
 
 
 /*=======================================================
@@ -92,7 +94,15 @@ router.post('/login',async ctx=>{
 * use static/position.html to test this API
  ========================================================*/
 
-
+ router.post('/voice',async ctx=>{
+    // ctx.body=ctx.request.fields;
+    console.log(ctx.request.fields);
+    console.log(ctx.request.fields.upfile[0].path);
+    let filePath=ctx.request.fields.upfile[0].path;
+    let returnText= await VoiceToText.voiceToText(filePath);
+    console.log(returnText);
+    ctx.body='upload successfully!';
+})
    
 
 

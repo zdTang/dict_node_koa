@@ -88,3 +88,9 @@ typings/
 .dynamodb/
 Client_jQuery/bundles/1.bundle.js
 *.mp3
+Server/googleCloudApi/google_api/speechText.json
+Server/googleCloudApi/google_api/textSpeech.json
+Server/dist/static/upload/upload_33c3b7d266226aeba5c407cd292863fb
+Server/dist/static/upload/upload_41c95135d3dafd86a626de89e4251c53
+Server/dist/static/upload/upload_68f6d9f5298d8c5fc5056cce3c1f1087
+Server/dist/static/upload/upload_b3b915ee02f025a58ef7e09b5ed79afb

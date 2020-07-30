@@ -35,13 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-/*====================================================================
-Discription: subrouter---api
-FileName:index.js
-Project: Karmax
-Programmer: Zhendong Tang (Mike)
-Date      : Jan 30, 2020
-=====================================================================*/
+Object.defineProperty(exports, "__esModule", { value: true });
 var Path = require('path');
 var Router = require('koa-router');
 var fs = require('await-fs');
@@ -55,6 +49,7 @@ var Validator = require(Path.resolve(__dirname, '../../libs/validator'));
 //const PositionProcessor = require(Path.resolve(__dirname,'../../libs/position'));
 //const PiaProcessor = require(Path.resolve(__dirname,'../../libs/pia'));
 //const Status = require(Path.resolve(__dirname,'../../libs/status'));
+var VoiceToText = require("../../libs/voice_to_text");
 /*=======================================================
  * this is used as enum, will wait for the final decision
  =======================================================*/
@@ -127,4 +122,22 @@ router.post('/login', function (ctx) { return __awaiter(void 0, void 0, void 0, 
                insert relevant data into DB
 * use static/position.html to test this API
  ========================================================*/
+router.post('/voice', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+    var filePath, returnText;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                // ctx.body=ctx.request.fields;
+                console.log(ctx.request.fields);
+                console.log(ctx.request.fields.upfile[0].path);
+                filePath = ctx.request.fields.upfile[0].path;
+                return [4 /*yield*/, VoiceToText.voiceToText(filePath)];
+            case 1:
+                returnText = _a.sent();
+                console.log(returnText);
+                ctx.body = 'upload successfully!';
+                return [2 /*return*/];
+        }
+    });
+}); });
 module.exports = router.routes();
