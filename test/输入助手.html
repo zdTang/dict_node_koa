@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+        
+        <div v-html="message"></div>
+
+        <!-- <input type="text" v-model="message" v-on:keyup="keyup"> -->
+        <textarea rows="10" cols="90" v-model="message" v-on:keyup="keyup"></textarea>
+    </div>
+    
+    <script>
+        new Vue({
+        el:"#app",
+        data:{
+            message:"mike"
+        },
+        methods:{
+            keyup(){
+                console.log(this.message);
+            }
+        }
+        });
+    </script>
+
+    <script>
+        // $(document).keyup(function(event){
+		// 	alert(event.keyCode)
+ 
+		// 	});
+
+    </script>
+</body>
+</html>
