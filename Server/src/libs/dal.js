@@ -18,10 +18,10 @@ module.exports = class dal{
     ===========================================================================*/
 
     //get words from database
-    static async GetWord(word:string){
-        let result:string="";
-        result = await db.query(`call GetWord(?)`,[word]);
-        return result;
+    static async GetWord(){
+        let word=undefined;
+        word = await db.query(`Select * from Class`);
+        return word;
     };
      //get words from database
     static async GetClass(){
