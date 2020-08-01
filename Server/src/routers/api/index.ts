@@ -86,23 +86,58 @@ router.post('/login',async ctx=>{
 })
 
 
-/*========================================================
-* Description: Processing received Position information
-*              Once receive a Position, will validate first
-               and determine which RouteId it belongs, then
-               insert relevant data into DB
-* use static/position.html to test this API
- ========================================================*/
+/*=======================================================================================
+* Description: 
 
- router.post('/voice',async ctx=>{
+This API will received a mp3/otherFormat voice file(user's voice instruction)from front end and
+then call  Google-speech-text to convert it into TEXT
+
+* ISSUE:  the format of voice file
+
+=========================================================================================*/
+
+ router.post('/voiceToText',async ctx=>{
     // ctx.body=ctx.request.fields;
     console.log(ctx.request.fields);
     console.log(ctx.request.fields.upfile[0].path);
     let filePath=ctx.request.fields.upfile[0].path;
-    let returnText= await VoiceToText.voiceToText(filePath);
+    let returnText= await VoiceToText.voiceToText(filePath);  // Google Speech-TO-Text API 
     console.log(returnText);
     ctx.body='upload successfully!';
 })
+
+
+
+/*=======================================================================================
+* Description: 
+
+This API will received a name of request MP3 file and response the correspond MP3 file
+
+* STEP 1: Check local voiceDB
+  STEP 2: CALL Spider to fetch a MP3 file 
+  STEP 3: if 2, then save to voiceDB
+  STEP 4: Response with MP3 file path
+
+=========================================================================================*/
+
+router.post('/textToVoice',async ctx=>{
+    // Parse the request and get the request Word
+    let wordName=ctx.request.fields.firstName;
+    console.log(wordName);
+    // Call method to check if this word exist
+
+    // Call spider to stole the MP3 file of this word
+
+    // Respond front end
+
+    
+    // console.log(ctx.request.fields.upfile[0].path);
+    // let filePath=ctx.request.fields.upfile[0].path;
+    // let returnText= await VoiceToText.voiceToText(filePath);  // Google Speech-TO-Text API 
+  //console.log(returnText);
+    ctx.body='done!';
+})
+   
    
 
 

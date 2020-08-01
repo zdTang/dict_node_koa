@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<!--If we know the mp3 file do exist, we can request it from Server directly
+by provide a correct mp3 file path:  // Tang -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>queen</h1>
+        <input type="button" value="♫" >
+    </div>
+
+    <div>
+        <h1>king</h1>
+        <input type="button" value="♫" >
+    </div>
+
+    
+    <script>
+       
+        $(function(){
+            
+            //Define a function here
+            //This function can be put into some libraries
+            function playMusic(name){
+            let fileName=name+'.mp3';
+            let music =new Audio(fileName);
+            music.play();
+            }
+            //Logic is here   
+                
+                //let a=$("div input");  // Get the button
+                let a=document.querySelectorAll("div input");
+                console.log(a);
+                console.log(a[0]);
+                a.forEach(element => {
+                    //console.log(this);
+                    let b=$(element).parents('div');   // get the container
+                    let fileName=b.children("h1").text();  // get the content between <h1> which is the name
+                     //a[0].addEventListener('click', function() {  //  JS's method
+                    $(element).on('click', function() {                  //  jquery 's method
+                playMusic(fileName);});
+        
+                });
+                
+
+           
+        })
+    </script>
+</body>
+</html>

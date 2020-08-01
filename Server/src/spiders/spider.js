@@ -1,4 +1,4 @@
-const request=require('./libs/request');
+const request=require('../libs/request');
 const fs=require('fs');
 
 (async()=>{

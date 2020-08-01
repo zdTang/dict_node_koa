@@ -115,14 +115,16 @@ router.post('/login', function (ctx) { return __awaiter(void 0, void 0, void 0, 
         return [2 /*return*/];
     });
 }); });
-/*========================================================
-* Description: Processing received Position information
-*              Once receive a Position, will validate first
-               and determine which RouteId it belongs, then
-               insert relevant data into DB
-* use static/position.html to test this API
- ========================================================*/
-router.post('/voice', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+/*=======================================================================================
+* Description:
+
+This API will received a mp3/otherFormat voice file(user's voice instruction)from front end and
+then call  Google-speech-text to convert it into TEXT
+
+* ISSUE:  the format of voice file
+
+=========================================================================================*/
+router.post('/voiceToText', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
     var filePath, returnText;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -138,6 +140,33 @@ router.post('/voice', function (ctx) { return __awaiter(void 0, void 0, void 0, 
                 ctx.body = 'upload successfully!';
                 return [2 /*return*/];
         }
+    });
+}); });
+/*=======================================================================================
+* Description:
+
+This API will received a name of request MP3 file and response the correspond MP3 file
+
+* STEP 1: Check local voiceDB
+  STEP 2: CALL Spider to fetch a MP3 file
+  STEP 3: if 2, then save to voiceDB
+  STEP 4: Response with MP3 file path
+
+=========================================================================================*/
+router.post('/textToVoice', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
+    var wordName;
+    return __generator(this, function (_a) {
+        wordName = ctx.request.fields.firstName;
+        console.log(wordName);
+        // Call method to check if this word exist
+        // Call spider to stole the MP3 file of this word
+        // Respond front end
+        // console.log(ctx.request.fields.upfile[0].path);
+        // let filePath=ctx.request.fields.upfile[0].path;
+        // let returnText= await VoiceToText.voiceToText(filePath);  // Google Speech-TO-Text API 
+        //console.log(returnText);
+        ctx.body = 'done!';
+        return [2 /*return*/];
     });
 }); });
 module.exports = router.routes();
