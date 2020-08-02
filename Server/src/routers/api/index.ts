@@ -7,7 +7,7 @@ Date      : Jan 30, 2020
 =====================================================================*/
 export {};
 const sFs=require("fs");
-const path=require("path");
+//const path=require("path");
 const Path=require('path');
 const Router=require('koa-router');
 const fs=require('await-fs');  
@@ -21,7 +21,8 @@ const Validator = require(Path.resolve(__dirname,'../../libs/validator'));
 //const PositionProcessor = require(Path.resolve(__dirname,'../../libs/position'));
 //const PiaProcessor = require(Path.resolve(__dirname,'../../libs/pia'));
 //const Status = require(Path.resolve(__dirname,'../../libs/status'));
-const VoiceToText=require("../../libs/voice_to_text")
+const VoiceToText=require("../../libs/voice_to_text");
+const Spider=require(Path.resolve(__dirname,"../../libs/spider"));
 
 
 /*=======================================================
@@ -120,6 +121,10 @@ This API will received a name of request MP3 file and response the correspond MP
   STEP 3: if 2, then save to voiceDB
   STEP 4: Response with MP3 file path
 
+  Dependencies:
+   libs/Spider    ==== To fetch mp3 file from other website
+   static/voiceDB ==== Local voice DB
+
 =========================================================================================*/
 
 router.post('/textToVoice',async ctx=>{
@@ -131,17 +136,26 @@ router.post('/textToVoice',async ctx=>{
     let pathToVoice=`../../../static/voiceDB/us/${firstLetter}`; // compose the Path based on first letter of the word
     console.log(pathToVoice);
     //let readDir = sFs.readdirSync(path.resolve(__dirname, '../../../static/voiceDB/us'));
-    let readDir = sFs.readdirSync(path.resolve(__dirname, pathToVoice));
+    let readDir = sFs.readdirSync(Path.resolve(__dirname, pathToVoice));
     let nameList=readDir.map(x=>{return x.substring(0,x.indexOf("."))});
-    let result= nameList.includes(word);
+    let result= nameList.includes(word);    //  Check if local DB has this word
     console.log(result);
+    let respondVoicePath:string="undefined";
+    if(result){
+        respondVoicePath=`../../voiceDB/us/${firstLetter}/${word}`;    // have this word, response file path
+    }
+    else{
+         // Call spider to stole the MP3 file of this word
+        let result:number=await Spider.RequestYoudao(0,word)         
+        if(result==1) // Spider fetched the mp3 file successfully
+        respondVoicePath=`../../voiceDB/us/${firstLetter}/${word}`;
+        else
+        respondVoicePath=" ";  // no corresponding MP3 file found
+
+    }
     // Respond front end
-    //let respondVoicePath=path.resolve(__dirname,`../../../static/voiceDB/${firstLetter}/${word}.mp3`);
-    let respondVoicePath=`../../voiceDB/us/${firstLetter}/${word}`;
-    console.log(respondVoicePath);
-
-
-    // Call spider to stole the MP3 file of this word
+    
+    //console.log(respondVoicePath);
 
     ctx.body=respondVoicePath;
 })

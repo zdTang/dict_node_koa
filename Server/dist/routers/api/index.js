@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sFs = require("fs");
-var path = require("path");
+//const path=require("path");
 var Path = require('path');
 var Router = require('koa-router');
 var fs = require('await-fs');
@@ -52,6 +52,7 @@ var Validator = require(Path.resolve(__dirname, '../../libs/validator'));
 //const PiaProcessor = require(Path.resolve(__dirname,'../../libs/pia'));
 //const Status = require(Path.resolve(__dirname,'../../libs/status'));
 var VoiceToText = require("../../libs/voice_to_text");
+var Spider = require(Path.resolve(__dirname, "../../libs/spider"));
 /*=======================================================
  * this is used as enum, will wait for the final decision
  =======================================================*/
@@ -154,24 +155,43 @@ This API will received a name of request MP3 file and response the correspond MP
   STEP 3: if 2, then save to voiceDB
   STEP 4: Response with MP3 file path
 
+  Dependencies:
+   libs/Spider    ==== To fetch mp3 file from other website
+   static/voiceDB ==== Local voice DB
+
 =========================================================================================*/
 router.post('/textToVoice', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
-    var word, firstLetter, pathToVoice, readDir, nameList, result, respondVoicePath;
+    var word, firstLetter, pathToVoice, readDir, nameList, result, respondVoicePath, result_1;
     return __generator(this, function (_a) {
-        word = ctx.request.fields.word;
-        console.log(word);
-        firstLetter = word.charAt(0).toUpperCase();
-        pathToVoice = "../../../static/voiceDB/us/" + firstLetter;
-        console.log(pathToVoice);
-        readDir = sFs.readdirSync(path.resolve(__dirname, pathToVoice));
-        nameList = readDir.map(function (x) { return x.substring(0, x.indexOf(".")); });
-        result = nameList.includes(word);
-        console.log(result);
-        respondVoicePath = "../../voiceDB/us/" + firstLetter + "/" + word;
-        console.log(respondVoicePath);
-        // Call spider to stole the MP3 file of this word
-        ctx.body = respondVoicePath;
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                word = ctx.request.fields.word;
+                console.log(word);
+                firstLetter = word.charAt(0).toUpperCase();
+                pathToVoice = "../../../static/voiceDB/us/" + firstLetter;
+                console.log(pathToVoice);
+                readDir = sFs.readdirSync(Path.resolve(__dirname, pathToVoice));
+                nameList = readDir.map(function (x) { return x.substring(0, x.indexOf(".")); });
+                result = nameList.includes(word);
+                console.log(result);
+                respondVoicePath = "undefined";
+                if (!result) return [3 /*break*/, 1];
+                respondVoicePath = "../../voiceDB/us/" + firstLetter + "/" + word; // have this word, response file path
+                return [3 /*break*/, 3];
+            case 1: return [4 /*yield*/, Spider.RequestYoudao(0, word)];
+            case 2:
+                result_1 = _a.sent();
+                if (result_1 == 1) // Spider fetched the mp3 file successfully
+                    respondVoicePath = "../../voiceDB/us/" + firstLetter + "/" + word;
+                else
+                    respondVoicePath = " "; // no corresponding MP3 file found
+                _a.label = 3;
+            case 3:
+                // Respond front end
+                //console.log(respondVoicePath);
+                ctx.body = respondVoicePath;
+                return [2 /*return*/];
+        }
     });
 }); });
 module.exports = router.routes();
