@@ -36,6 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var sFs = require("fs");
+var path = require("path");
 var Path = require('path');
 var Router = require('koa-router');
 var fs = require('await-fs');
@@ -154,18 +156,21 @@ This API will received a name of request MP3 file and response the correspond MP
 
 =========================================================================================*/
 router.post('/textToVoice', function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
-    var wordName;
+    var word, firstLetter, pathToVoice, readDir, nameList, result, respondVoicePath;
     return __generator(this, function (_a) {
-        wordName = ctx.request.fields.firstName;
-        console.log(wordName);
-        // Call method to check if this word exist
+        word = ctx.request.fields.word;
+        console.log(word);
+        firstLetter = word.charAt(0).toUpperCase();
+        pathToVoice = "../../../static/voiceDB/us/" + firstLetter;
+        console.log(pathToVoice);
+        readDir = sFs.readdirSync(path.resolve(__dirname, pathToVoice));
+        nameList = readDir.map(function (x) { return x.substring(0, x.indexOf(".")); });
+        result = nameList.includes(word);
+        console.log(result);
+        respondVoicePath = "../../voiceDB/us/" + firstLetter + "/" + word;
+        console.log(respondVoicePath);
         // Call spider to stole the MP3 file of this word
-        // Respond front end
-        // console.log(ctx.request.fields.upfile[0].path);
-        // let filePath=ctx.request.fields.upfile[0].path;
-        // let returnText= await VoiceToText.voiceToText(filePath);  // Google Speech-TO-Text API 
-        //console.log(returnText);
-        ctx.body = 'done!';
+        ctx.body = respondVoicePath;
         return [2 /*return*/];
     });
 }); });

@@ -6,6 +6,8 @@ Programmer: Zhendong Tang (Mike)
 Date      : Jan 30, 2020
 =====================================================================*/
 export {};
+const sFs=require("fs");
+const path=require("path");
 const Path=require('path');
 const Router=require('koa-router');
 const fs=require('await-fs');  
@@ -122,20 +124,26 @@ This API will received a name of request MP3 file and response the correspond MP
 
 router.post('/textToVoice',async ctx=>{
     // Parse the request and get the request Word
-    let wordName=ctx.request.fields.firstName;
-    console.log(wordName);
+    let word=ctx.request.fields.word;
+    console.log(word);
     // Call method to check if this word exist
+    let firstLetter=word.charAt(0).toUpperCase();
+    let pathToVoice=`../../../static/voiceDB/us/${firstLetter}`; // compose the Path based on first letter of the word
+    console.log(pathToVoice);
+    //let readDir = sFs.readdirSync(path.resolve(__dirname, '../../../static/voiceDB/us'));
+    let readDir = sFs.readdirSync(path.resolve(__dirname, pathToVoice));
+    let nameList=readDir.map(x=>{return x.substring(0,x.indexOf("."))});
+    let result= nameList.includes(word);
+    console.log(result);
+    // Respond front end
+    //let respondVoicePath=path.resolve(__dirname,`../../../static/voiceDB/${firstLetter}/${word}.mp3`);
+    let respondVoicePath=`../../voiceDB/us/${firstLetter}/${word}`;
+    console.log(respondVoicePath);
+
 
     // Call spider to stole the MP3 file of this word
 
-    // Respond front end
-
-    
-    // console.log(ctx.request.fields.upfile[0].path);
-    // let filePath=ctx.request.fields.upfile[0].path;
-    // let returnText= await VoiceToText.voiceToText(filePath);  // Google Speech-TO-Text API 
-  //console.log(returnText);
-    ctx.body='done!';
+    ctx.body=respondVoicePath;
 })
    
    

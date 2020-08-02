@@ -38,6 +38,7 @@ fetched from other website will be saved in voiceDB as well.
             //This function can be put into some libraries
             function playMusic(name){
             let fileName=name+'.mp3';
+            console.log(fileName);
             let music =new Audio(fileName);
             music.play();
             }
@@ -59,11 +60,11 @@ fetched from other website will be saved in voiceDB as well.
                             method: 'post',
                             url: '/api/textToVoice',
                             data: {
-                                firstName: 'Fred',
-                                lastName: 'Flintstone'
+                                word: fileName,
                             }
                             }).then(function (response) {
-                                console.log(response);
+                                console.log(response.data);
+                                playMusic(response.data);
                             });
                                         
     
