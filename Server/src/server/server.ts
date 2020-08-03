@@ -22,7 +22,7 @@ const staticFile=require(path.resolve(__dirname,'../routers/static'));
 
 const io=require('socket.io'); 
 const http=require('http');  
-const DAL = require('../libs/DAL');
+const DAL = require('../libs/dal');
 
 
     const app=new Koa();

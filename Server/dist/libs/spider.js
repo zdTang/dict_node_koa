@@ -1,4 +1,8 @@
 "use strict";
+/*=============================
+Description: Pay attention to path
+between Linux and Windows platform
+ =============================*/
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -62,8 +66,9 @@ module.exports = {
                         writeRootPath = path.resolve(__dirname, "../../static/voiceDB");
                         console.log(writeRootPath);
                         countryID = (type == 0 ? "us" : "en");
-                        firstLetter = word.charAt(0);
-                        wordPath = writeRootPath + "\\" + countryID + "\\" + firstLetter + "\\" + word + '.mp3';
+                        firstLetter = word.charAt(0).toUpperCase();
+                        ;
+                        wordPath = writeRootPath + "/" + countryID + "/" + firstLetter + "/" + word + '.mp3';
                         console.log(wordPath);
                         // fs.writeFile(`tmp/youdao.mp3`, body, err=>{
                         fs.writeFile(wordPath, body, function (err) {

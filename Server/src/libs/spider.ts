@@ -1,3 +1,8 @@
+/*=============================
+Description: Pay attention to path 
+between Linux and Windows platform
+ =============================*/
+
 export {};
 const request=require('./request');
 const fs=require('fs');
@@ -20,8 +25,12 @@ Parameters:
            let writeRootPath:string=path.resolve(__dirname,`../../static/voiceDB`);
            console.log(writeRootPath);
            let countryID=(type==0?"us":"en");
-           let firstLetter=word.charAt(0);
-           let wordPath=writeRootPath+"\\"+countryID+"\\"+firstLetter+"\\"+word+'.mp3';
+           let firstLetter=word.charAt(0).toUpperCase();;
+           /*Window version path */
+           //let wordPath=writeRootPath+"\\"+countryID+"\\"+firstLetter+"\\"+word+'.mp3';
+           /*Linux version path */
+           //pay attention
+           let wordPath=writeRootPath+"/"+countryID+"/"+firstLetter+"/"+word+'.mp3';
            console.log(wordPath);
           // fs.writeFile(`tmp/youdao.mp3`, body, err=>{
             fs.writeFile(wordPath, body, err=>{
