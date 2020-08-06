@@ -1,12 +1,12 @@
 {
-  "name": "flos-server",
+  "name": "dictionary_node",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
-    "server": "nodemon dist/server/server.js"
+    "server": "node dist/server/server.js"
   },
   "keywords": [],
   "author": "",
@@ -42,7 +42,7 @@
     "koa-static": "^5.0.0",
     "mysql": "^2.18.1",
     "noa": "^0.0.3",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.4",
     "socket.io": "^2.3.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"

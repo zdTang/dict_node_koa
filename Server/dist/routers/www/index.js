@@ -33,10 +33,10 @@ router.get('/',async ctx=>{
 
     //==========================
 
-    let legs= await DAL.GetLegs(30);
-    console.log(legs);
-    let status= Business.GetCurrentLegIndexAndStage(legs);
-    console.log(status);
+    // let legs= await DAL.GetLegs(30);
+    // console.log(legs);
+    // let status= Business.GetCurrentLegIndexAndStage(legs);
+    // console.log(status);
 
 
 

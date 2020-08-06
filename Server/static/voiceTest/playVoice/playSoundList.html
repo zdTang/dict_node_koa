@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+
+    If we don't know the mp3 file do exist, we can request it from API which will
+return a correspond mp3 file.
+The API will return the mp3 file if voiceDB has this file. 
+Or it will fetch a mp3 file from other website. If it is the case, the mp3 file we
+fetched from other website will be saved in voiceDB as well.
+
+// Tang -->
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/jquery-3.5.1.min.js"></script>
+    <script src="../../js/axios.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>queen</h1>
+        <input type="button" value="♫" >
+    </div>
+
+    <div>
+        <h1>king</h1>
+        <input type="button" value="♫" >
+    </div>
+
+    <div>
+        <h1>abduction</h1>
+        <input type="button" value="♫" >
+    </div>
+    
+    <div>
+        <h1>abandonment</h1>
+        <input type="button" value="♫" >
+    </div>
+    <div>
+        <h1>appeasement</h1>
+        <input type="button" value="♫" >
+    </div>
+    <div>
+        <h1>abasement</h1>
+        <input type="button" value="♫" >
+    </div>
+
+    <input id ="playButton" type="button" value="Play sounds">
+
+    
+    <script>
+       
+        $(function(){
+            
+            //Define a function here
+            //This function can be put into some libraries
+            function playMusic(name){
+            let fileName=name+'.mp3';
+            console.log(fileName);
+            let music =new Audio(fileName);
+            music.play();
+            }
+            //Logic is here   
+                
+                //let a=$("div input");  // Get the button
+                let a=document.querySelectorAll("div input");
+                console.log(a);
+                console.log(a[0]);
+                a.forEach(element => {
+                    //console.log(this);
+                    let b=$(element).parents('div');   // get the container
+                    let fileName=b.children("h1").text();  // get the content between <h1> which is the name
+                     //a[0].addEventListener('click', function() {  //  JS's method
+                    $(element).on('click', function() {                  //  jquery 's method
+                
+                    // send the word to Server
+                    axios({
+                            method: 'post',
+                            url: '/api/textToVoice',
+                            data: {
+                                word: fileName,
+                            }
+                            }).then(function (response) {
+                                console.log(response.data);
+                                playMusic(response.data);
+                            });
+                                        
+    
+    
+                            // get the path of the mp3 file
+                       // playMusic(fileName);});
+            
+                    });
+
+
+                    let button=$("#playButton");
+                    button.click(()=>{alert("haha")});
+                
+
+           
+        })
+
+    })
+    </script>
+</body>
+</html>
