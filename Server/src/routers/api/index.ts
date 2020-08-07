@@ -134,6 +134,7 @@ router.post('/textToVoice',async ctx=>{
     // Call method to check if this word exist
     let firstLetter=word.charAt(0).toUpperCase();
     let pathToVoice=`../../../static/voiceDB/us/${firstLetter}`; // compose the Path based on first letter of the word
+    //let basePath=Path.resolve()
     console.log(pathToVoice);
     //let readDir = sFs.readdirSync(path.resolve(__dirname, '../../../static/voiceDB/us'));
     let readDir = sFs.readdirSync(Path.resolve(__dirname, pathToVoice));

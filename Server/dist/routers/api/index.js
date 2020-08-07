@@ -169,6 +169,7 @@ router.post('/textToVoice', function (ctx) { return __awaiter(void 0, void 0, vo
                 console.log(word);
                 firstLetter = word.charAt(0).toUpperCase();
                 pathToVoice = "../../../static/voiceDB/us/" + firstLetter;
+                //let basePath=Path.resolve()
                 console.log(pathToVoice);
                 readDir = sFs.readdirSync(Path.resolve(__dirname, pathToVoice));
                 nameList = readDir.map(function (x) { return x.substring(0, x.indexOf(".")); });
