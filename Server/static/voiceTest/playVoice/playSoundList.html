@@ -47,7 +47,7 @@ fetched from other website will be saved in voiceDB as well.
         <input type="button" value="♫" >
     </div>
 
-    <input id ="playButton" type="button" value="Play sounds">
+    <input id ="but" type="button" value="Play sounds">
 
     
     <script>
@@ -63,15 +63,16 @@ fetched from other website will be saved in voiceDB as well.
             music.play();
             }
             //Logic is here   
-                
+            let soundList=[];
                 //let a=$("div input");  // Get the button
                 let a=document.querySelectorAll("div input");
-                console.log(a);
-                console.log(a[0]);
+                // console.log(a);
+                // console.log(a[0]);
                 a.forEach(element => {
                     //console.log(this);
                     let b=$(element).parents('div');   // get the container
                     let fileName=b.children("h1").text();  // get the content between <h1> which is the name
+                    soundList.push(new Audio(fileName));
                      //a[0].addEventListener('click', function() {  //  JS's method
                     $(element).on('click', function() {                  //  jquery 's method
                 
@@ -93,15 +94,66 @@ fetched from other website will be saved in voiceDB as well.
                        // playMusic(fileName);});
             
                     });
+              //
 
-
-                    let button=$("#playButton");
-                    button.click(()=>{alert("haha")});
+            
                 
 
            
         })
 
+
+        console.log(soundList);
+
+                let button=$("#but");
+                  
+                    button.click(()=>{alert("haha")});
+        // async function playList(){
+        //     let button=$("#but");
+        //             button.click(()=>{
+                        
+        //                 //alert("haha")
+        //                 let a=document.querySelectorAll("div input");
+        //                 let num=a.length;
+        //                 for(let i=0;i<num;i++){
+                            
+        //                     await a[i].click()
+                        
+        //                 }
+        //             });
+
+        // }
+
+        // playList();
+
+
+
+
+        //var files = [new buzz.sound('audio1.mp3'), new buzz.sound('audio2.mp3'), new buzz.sound('audio3.mp3')];
+
+//         soundList.forEach(function(element, index) {
+//     $(element).bind('ended', function(e) { // when current file ends
+//         soundList[index+1].play(); // trigger the next file to play
+//     });
+// })
+var players = [audio1,audio2,audio3];
+
+    var counter = 0;
+
+audio1.onended = playNext;
+
+
+
+function playNext(){
+     if(counter <= players.length){
+      counter++
+      players[counter].play();
+      players[counter].onended = playNext;
+}
+}
+
+// start the first file that triggers the rest
+    
     })
     </script>
 </body>
